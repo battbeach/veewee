@@ -17,6 +17,10 @@ module Veewee
 
         module Shell
 
+          def cygpath(s)
+            (RbConfig::CONFIG['host_os'] =~ /cygwin/) ?  `/bin/cygpath -w "#{s}"`.chomp : s
+          end
+
           # http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/185404
           # This should work on windows too now
           # This will result in a ShellResult structure with stdout, stderr and status
